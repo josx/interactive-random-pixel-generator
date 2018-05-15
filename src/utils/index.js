@@ -29,7 +29,7 @@ const ceroPalette = {
   [_]: "229, 230, 232"
 }
 
-const colors = { 'bwPalette': bwPalette, 'marioPalette': marioPalette }
+const colors = { bwPalette, marioPalette }
 
 const paletteKeys = Object.keys(colors).reduce( (p, c) => {
   p[c] = Object.keys(colors[c])
@@ -41,14 +41,38 @@ const getPaletteKeys = Object.keys(colors).reduce((p, c) => {
   return p
 }, {})
 
-const getRndImage = (h, v, p) => math.randomInt([v, h], 0, paletteKeys[p].length).map(getPaletteKeys[p])
+const getRndImageCustomPalette = (h, v, p) => math.randomInt([v, h], 0, paletteKeys[p].length).map(getPaletteKeys[p])
 
-const buildPalette = (palette) => {
+const getRndRgb = () => getRndColor() + ', ' + getRndColor() + ', ' + getRndColor()
+const getRndColor = () =>  Math.floor(Math.random() * 256)
+
+const getRndImageRgb = (h, v) => {
+  let palette = {}
+  let matrix = []
+  let idx = null
+  for(var i=0; i<v; i++) {
+    matrix[i] = []
+    for(var j=0; j<h; j++) {
+      matrix[i][j] = getRndRgb()
+      idx = i.toString() + j.toString()
+      Object.assign(palette, { [idx]: matrix[i][j] })
+      matrix[i][j] = idx
+    }
+  }
+  return [matrix, palette]
+}
+
+const buildImage = (h, v, palette) => {
   let idx = palette + 'Palette'
   if (colors[idx] == undefined) {
     idx = 'bwPalette'
   }
-  return [ idx, colors[idx] ]
+
+  if(palette != 'rgb') {
+    return [ getRndImageCustomPalette(h, v, idx), colors[idx] ]
+  } else {
+    return getRndImageRgb(h,v)
+  }
 }
 
 export const DefaultImage = {
@@ -59,9 +83,9 @@ export const DefaultImage = {
 }
 
 export const RandomImage = (h, v, palette, size) => {
-  const [ idx, colors ] = buildPalette(palette)
+  const [ pixelData, colors ] = buildImage(h, v, palette)
   return {
-    pixelData: getRndImage(h, v, idx),
+    pixelData,
     colors,
     pixelSize: size,
   }
