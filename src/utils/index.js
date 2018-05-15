@@ -1,13 +1,20 @@
 import math from 'mathjs'
 
-const Z = "Z"   //Black
-const C = "C";  //Hat & Shirt
-const B = "B";  //Brown Hair & Boots
-const S = "S";  //Skin Tone
-const O = "O";  //Blue Overalls
-const Y = "Y";  //Yellow Buckles
-const W = "W";  //White Gloves
-const _ = "_";
+const Z = "Z"  //Black
+const C = "C"  //Hat & Shirt
+const B = "B"  //Brown Hair & Boots
+const S = "S"  //Skin Tone
+const O = "O"  //Blue Overalls
+const Y = "Y"  //Yellow Buckles
+const W = "W"  //White Gloves
+const _ = "_"
+
+const M1 = "M1"
+const M2 = "M2"
+const M3 = "M3"
+const M4 = "M4"
+const M5 = "M5"
+
 
 const marioPalette = {
   [C]: "255, 0, 0",
@@ -29,7 +36,15 @@ const ceroPalette = {
   [_]: "229, 230, 232"
 }
 
-const colors = { bwPalette, marioPalette }
+const monalisaPalette = {
+ [M1]: "68, 68, 51",
+ [M2]: "119, 170,102",
+ [M3]: "170, 170, 85",
+ [M4]: "255, 238, 85",
+ [M5]: "238, 187, 68"
+}
+
+const colors = { bwPalette, marioPalette, monalisaPalette }
 
 const paletteKeys = Object.keys(colors).reduce( (p, c) => {
   p[c] = Object.keys(colors[c])

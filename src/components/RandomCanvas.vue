@@ -10,6 +10,9 @@
     <input type="radio" id="mario" value="mario" v-model="palette">
     <label for="mario">mario</label>
     <br>
+    <input type="radio" id="monalisa" value="monalisa" v-model="palette">
+    <label for="monalisa">monalisa</label>
+    <br>
     <button v-on:click="clear">Clear</button>
     <button v-on:click="renderImage">Render</button>
     <button v-on:click="showMario">Mario</button>
