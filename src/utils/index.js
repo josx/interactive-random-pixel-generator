@@ -9,8 +9,7 @@ const Y = "Y";  //Yellow Buckles
 const W = "W";  //White Gloves
 const _ = "_";
 
-const colors = {
-  [Z]: "0, 0, 0",
+const marioPalette = {
   [C]: "255, 0, 0",
   [B]: "100, 50, 0",
   [S]: "255, 200, 150",
@@ -20,15 +19,51 @@ const colors = {
   [_]: "229, 230, 232"
 }
 
-const colorsNames = Object.keys(colors)
-const getColorsNames = (line) => line.map(pos => colorsNames[pos])
-const getRndImage = (h, v) => math.randomInt([v, h], 0, colorsNames.length).map(getColorsNames)
+const bwPalette = {
+  [Z]: "0, 0, 0",
+  [W]: "255, 255, 255"
+}
 
-export const RandomImage = () => {
+const ceroPalette = {
+  [Z]: "0, 0, 0",
+  [_]: "229, 230, 232"
+}
+
+const colors = { 'bwPalette': bwPalette, 'marioPalette': marioPalette }
+
+const paletteKeys = Object.keys(colors).reduce( (p, c) => {
+  p[c] = Object.keys(colors[c])
+  return p
+}, {})
+
+const getPaletteKeys = Object.keys(colors).reduce((p, c) => {
+  p[c] = (line) => line.map(pos => paletteKeys[c][pos])
+  return p
+}, {})
+
+const getRndImage = (h, v, p) => math.randomInt([v, h], 0, paletteKeys[p].length).map(getPaletteKeys[p])
+
+const buildPalette = (palette) => {
+  let idx = palette + 'Palette'
+  if (colors[idx] == undefined) {
+    idx = 'bwPalette'
+  }
+  return [ idx, colors[idx] ]
+}
+
+export const DefaultImage = {
+  pixelData: [],
+  colors: {},
+  pixelSize: "20px",
+  background: "rgb(229, 230, 232)"
+}
+
+export const RandomImage = (h, v, palette, size) => {
+  const [ idx, colors ] = buildPalette(palette)
   return {
-    pixelData: getRndImage(14, 17),
+    pixelData: getRndImage(h, v, idx),
     colors,
-    pixelSize: '20px',
+    pixelSize: size,
   }
 }
 
@@ -51,7 +86,7 @@ export const Mario = {
     [_, _, _, O, O, O, _, _, O, O, O, _, _, _],
     [_, _, B, B, B, _, _, _, _, B, B, B, _, _],
     [_, B, B, B, B, _, _, _, _, B, B, B, B, _]],
-  colors,
+  colors: marioPalette,
   pixelSize: '20px'
 }
 
@@ -64,5 +99,5 @@ export const Cero = {
    [_, Z, Z, Z, _],
   ],
   pixelSize: '60px',
-  colors
+  colors: ceroPalette
 }

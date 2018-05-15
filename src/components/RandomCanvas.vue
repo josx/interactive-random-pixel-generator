@@ -1,15 +1,25 @@
 <template>
   <div id="random-canvas">
     <Canvas :pixel-data="pixelData" :colors="colors" :pixel-size="pixelSize" :background="background"></Canvas>
+    <input type="radio" id="bw" value="bw" v-model="palette">
+    <label for="bw">Black and White</label>
+    <br>
+    <input type="radio" id="rgb" value="rgb" v-model="palette">
+    <label for="rgb">rgb</label>
+    <br>
+    <input type="radio" id="mario" value="mario" v-model="palette">
+    <label for="mario">mario</label>
+    <br>
+    <button v-on:click="clear">Clear</button>
+    <button v-on:click="renderImage">Render</button>
     <button v-on:click="showMario">Mario</button>
-    <button v-on:click="showRandom">Random</button>
     <button v-on:click="showCero">Cero</button>
   </div>
 </template>
 
 <script>
 import Canvas from './Canvas'
-import { Mario, RandomImage, Cero } from '../utils'
+import { Mario, RandomImage, Cero, DefaultImage } from '../utils'
 
 export default {
   name: 'RandomCanvas',
@@ -19,26 +29,22 @@ export default {
     Canvas
   },
   data() {
-    return {
-      pixelData: [],
-      colors: {},
-      pixelSize: "20px",
-      background: "rgb(229, 230, 232)"
-    }
+    return { ...DefaultImage, palette: '' }
   },
   created() {
   },
   methods: {
-    showMario: function() {
- //     this.pixeliData = Mario.pixelData
- //     this.colors = Mario.colors
-      Object.assign(this, Mario)
-    },
-    showRandom: function() {
-      const image= RandomImage()
+    renderImage: function() {
+      const image= RandomImage(14, 17, this.palette, '20px')
       Object.assign(this, image)
-//      this.pixelData = image.pixelData
-//      this.colors = image.colors
+    },
+    clear: function() {
+      Object.assign(this, DefaultImage)
+      // Empty array to run changes
+      this.pixelData.splice(0)
+    },
+    showMario: function() {
+      Object.assign(this, Mario)
     },
     showCero: function() {
       Object.assign(this, Cero)
