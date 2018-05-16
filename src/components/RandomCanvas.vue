@@ -10,19 +10,22 @@
     <input type="radio" id="mario" value="mario" v-model="palette">
     <label for="mario">mario</label>
     <br>
+    <input type="radio" id="luigi" value="luigi" v-model="palette">
+    <label for="luigi">luigi</label>
+    <br>
     <input type="radio" id="monalisa" value="monalisa" v-model="palette">
     <label for="monalisa">monalisa</label>
     <br>
     <button v-on:click="clear">Clear</button>
     <button v-on:click="renderImage">Render</button>
     <button v-on:click="showMario">Mario</button>
-    <button v-on:click="showCero">Cero</button>
+    <button v-on:click="showLuigi">Luigi</button>
   </div>
 </template>
 
 <script>
 import Canvas from './Canvas'
-import { Mario, RandomImage, Cero, DefaultImage } from '../utils'
+import { Mario, RandomImage, Luigi, DefaultImage } from '../utils'
 
 export default {
   name: 'RandomCanvas',
@@ -49,8 +52,8 @@ export default {
     showMario: function() {
       Object.assign(this, Mario)
     },
-    showCero: function() {
-      Object.assign(this, Cero)
+    showLuigi: function() {
+      Object.assign(this, Luigi)
     }
   }
 }

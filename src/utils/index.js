@@ -8,6 +8,8 @@ const O = "O"  //Blue Overalls
 const Y = "Y"  //Yellow Buckles
 const W = "W"  //White Gloves
 const _ = "_"
+const G = "G"  //Green
+
 
 const M1 = "M1"
 const M2 = "M2"
@@ -31,8 +33,14 @@ const bwPalette = {
   [W]: "255, 255, 255"
 }
 
-const ceroPalette = {
+const luigiPalette = {
+  [G]: "0, 180, 0",
+  [B]: "100, 50, 0",
+  [O]: "0, 0, 255",
+  [Y]: "255, 255, 0",
   [Z]: "0, 0, 0",
+  [S]: "255, 200, 150",
+  [W]: "255, 255, 255",
   [_]: "229, 230, 232"
 }
 
@@ -44,7 +52,7 @@ const monalisaPalette = {
  [M5]: "238, 187, 68"
 }
 
-const colors = { bwPalette, marioPalette, monalisaPalette }
+const colors = { bwPalette, marioPalette, monalisaPalette, luigiPalette }
 
 const paletteKeys = Object.keys(colors).reduce( (p, c) => {
   p[c] = Object.keys(colors[c])
@@ -129,14 +137,25 @@ export const Mario = {
   pixelSize: '20px'
 }
 
-export const Cero = {
+export const Luigi = {
   pixelData: [
-   [_, Z, Z, Z, _],
-   [Z, _, _, Z, Z],
-   [Z, _, Z, _, Z],
-   [Z, Z, _, _, Z],
-   [_, Z, Z, Z, _],
-  ],
-  pixelSize: '60px',
-  colors: ceroPalette
+    [_, _, _, _, _, _, _, _, _, _, _, _, _, _],
+    [_, _, _, _, G, G, G, G, G, _, _, _, _, _],
+    [_, _, _, G, G, G, G, G, G, G, G, G, _, _],
+    [_, _, _, B, B, B, S, S, Z, S, _, _, _, _],
+    [_, _, B, S, B, S, S, S, Z, S, S, S, _, _],
+    [_, _, B, S, B, B, S, S, S, Z, S, S, Z, _],
+    [_, _, B, B, S, S, S, S, Z, Z, Z, Z, _, _],
+    [_, _, _, _, S, S, S, S, S, S, S, _, _, _],
+    [_, _, _, G, G, O, G, G, G, G, _, _, _, _],
+    [_, _, G, G, G, O, G, G, O, G, G, G, _, _],
+    [_, G, G, G, G, O, O, O, O, G, G, G, G, _],
+    [_, W, W, G, O, Y, O, O, Y, O, G, W, W, _],
+    [_, W, W, W, O, O, O, O, O, O, W, W, W, _],
+    [_, W, W, O, O, O, O, O, O, O, O, W, W, _],
+    [_, _, _, O, O, O, _, _, O, O, O, _, _, _],
+    [_, _, B, B, B, _, _, _, _, B, B, B, _, _],
+    [_, B, B, B, B, _, _, _, _, B, B, B, B, _]],
+  colors: luigiPalette,
+  pixelSize: '20px'
 }
