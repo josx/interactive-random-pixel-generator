@@ -19,6 +19,14 @@
     <label for="pixel">Pixel Size</label>
     <input v-model.number="pixelSizeNumber" type="number">
     <br>
+
+    <label for="pixel">Image size width</label>
+    <input v-model.number="imageSizeWidth" type="number">
+    <br>
+     <label for="pixel">ImageSize height</label>
+    <input v-model.number="imageSizeHeight" type="number">
+    <br>
+
     <button v-on:click="clear">Clear</button>
     <button v-on:click="renderImage">Render</button>
     <button v-on:click="showMario">Mario</button>
@@ -41,14 +49,16 @@ export default {
     return {
       ...DefaultImage,
       palette: '',
-      pixelSizeNumber: 20
+      pixelSizeNumber: 20,
+      imageSizeWidth: 14,
+      imageSizeHeight: 17
     }
   },
   created() {
   },
   methods: {
     renderImage: function() {
-      const image = RandomImage(14, 17, this.palette, this.addPx(this.pixelSizeNumber))
+      const image = RandomImage(this.imageSizeWidth, this.imageSizeHeight, this.palette, this.addPx(this.pixelSizeNumber))
       Object.assign(this, image)
     },
     clear: function() {
