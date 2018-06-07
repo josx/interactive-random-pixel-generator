@@ -1,7 +1,5 @@
 <template>
-  <div id="app">
-    <RandomCanvas />
-  </div>
+  <Random-Canvas/>
 </template>
 
 <script>
@@ -25,3 +23,5 @@ export default {
   margin-top: 60px;
 }
 </style>
+
+<style src="vuetify/dist/vuetify.min.css"></style>
