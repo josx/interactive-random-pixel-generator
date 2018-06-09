@@ -73,14 +73,16 @@
         </div>
         <v-divider></v-divider>
         <div  class="pt-2 pl-5 pr-5">
-
           <v-btn centered color="success" block v-on:click="renderImage">Render</v-btn>
+          <v-divider></v-divider>
+          <v-btn outline centered color="success" block v-on:click="showMario">Mario</v-btn>
+          <v-btn outline centered color="success" block v-on:click="showLuigi">Luigi</v-btn>
         </div>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar color="indigo" dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>interactive-random-pixel-generator</v-toolbar-title>
     </v-toolbar>
     <v-content>
       <v-container fluid fill-height>
@@ -99,8 +101,6 @@
     <v-footer color="indigo" app>
       <v-btn color="error" v-on:click="clear" flat  block>Clear</v-btn>
       <v-btn color="success" v-on:click="renderImage"  block>Render</v-btn>
-      <!-- <v-btn color="error"  v-on:click="showMario">Mario</v-btn>
-      <v-btn color="error"  v-on:click="showLuigi">Luigi</v-btn> -->
     </v-footer>
   </v-app>
 </template>
