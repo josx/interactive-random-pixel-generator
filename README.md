@@ -34,8 +34,5 @@ This work is based on [vue-pixel](https://github.com/yhosun/vue-pixel) example.
 
 ## Todo
 
- - Better UI/UX
- - Change Palettes (colors)
- - Custom Image Size and Pixel Size
  - Custom funny Characters (frecuencies and Palettes)
  - Better Performance with WebAssembly
